@@ -1,0 +1,10 @@
+Hi , 
+
+Please approve the request for access as System Administrator profile for {!User_Exception__c.Requestor_Name__c} which is requested by {!User_Exception__c.OwnerFullName}. 
+
+Follow the link below to Approve/Reject the request: 
+
+{!ApprovalRequest.External_URL} 
+
+Thanks & Regards, 
+{!User_Exception__c.OwnerFullName}

@@ -1,0 +1,32 @@
+<apex:page controller="MasterChild">
+    <apex:form >
+        <apex:pageBlock title="Master Details">
+            <apex:pageblockSection columns="1">
+                <apex:pageBlockTable value="{!masterList}" var="mas">
+                      <apex:column headerValue="Master Name">
+                           <apex:commandLink value="{!mas.Name}" action="{!displayChild}">
+                              <apex:param name="childDisp" value="{!mas.Id}"/>
+                           </apex:commandLink>
+                           
+                      </apex:column>
+                      <apex:column headerValue="Master Number">
+                           <apex:outputText value="{!mas.Master_Number__c}"></apex:outputText>  
+                      </apex:column>
+                     
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Child Details">
+            <apex:pageblockSection columns="1">
+                <apex:pageBlockTable value="{!childList}" var="child">
+                      
+                      <apex:column headerValue="Child Number">
+                           <apex:outputText value="{!child.Name}"></apex:outputText>  
+                      </apex:column>
+                     
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,5 @@
+Hi {!User_Exception__c.Requestor_Name__c}, 
+
+The Approver has rejected you request. Please submit your request again providing further inputs. 
+
+Thanks !

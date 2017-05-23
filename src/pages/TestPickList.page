@@ -1,0 +1,14 @@
+<apex:page standardController="Opportunity" extensions="TestPickListController">
+ 
+  
+  <apex:form >
+      <apex:pageBlock >
+          <apex:pageBlockSection >
+              <apex:inputField value="{!opp.Type}" onchange="actionFunc();" />
+          </apex:pageBlockSection>
+          <apex:actionFunction name="actionFunc" action="{!goToPage}"/>
+      </apex:pageBlock>
+      
+ 
+  </apex:form>
+</apex:page>

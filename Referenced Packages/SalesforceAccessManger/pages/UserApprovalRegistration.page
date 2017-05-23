@@ -1,0 +1,73 @@
+<apex:page showHeader="false" StandardController="SFAccessManger__User_Exception__c" extensions="SFAccessManger.userExceptionClass">
+    
+    <apex:sectionHeader title="User Access Approval Form"></apex:sectionHeader>
+    
+    <apex:form id="frmId">            
+
+        <apex:pageBlock mode="edit" >        
+            
+            <apex:pageBlockButtons location="bottom">
+                  <apex:outputPanel id="ApprovalButton" >
+                      <apex:commandButton value="Submit for Access"  action="{!saveExcepUser}"  rendered="{!objUserExcep.SFAccessManger__Are_you_Already_Approved__c}" reRender="newuser,msgs,appUser,prjName,ApprovalButton,reasonAccess"/>
+                      <apex:commandButton value="Submit for Approval"  action="{!saveExcepUser}"  rendered="{!NOT(objUserExcep.SFAccessManger__Are_you_Already_Approved__c)}" reRender="newuser,appUser,msgs,prjName,ApprovalButton,reasonAccess"/>
+                  </apex:outputPanel>
+                  <apex:commandButton value="Cancel" action="{!Cancel}" immediate="true" />                                
+            </apex:pageBlockButtons>  
+                <apex:outputPanel id="newuser">
+                    <apex:pageBlockSection columns="1" title="Member Information" >
+                        <apex:pagemessages id="msgs"></apex:pagemessages>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+           <apex:outputPanel id="rows">
+            <apex:actionRegion >
+            <apex:pageBlockSection columns="1"  >             
+             
+             <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Are you a Approved User?" >
+                     <img src="/s.gif" alt="Help" class="helpIcon" title="Please click on the checkbox if you are Approved User and enter From and To Date "/>
+                </apex:outputLabel>
+                <apex:inputField value="{!objUserExcep.SFAccessManger__Are_you_Already_Approved__c}"  >
+                     <apex:actionSupport event="onclick"  reRender="appUser,prjName,ApprovalButton,reasonAccess,name"  />
+                </apex:inputField>
+             </apex:pageBlockSectionItem>
+             <apex:pageBlockSectionItem >
+                <apex:outputLabel value="User Name"/>
+               <!-- <apex:inputField value="{!objUserExcep.SFAccessManger__Requestor_Name__c}"  required="True"/> -->
+                <apex:inputField value="{!objUserExcep.SFAccessManger__Requestor_Name__c}" required="True" />
+             </apex:pageBlockSectionItem>            
+             
+            </apex:pageBlockSection>
+            </apex:actionRegion>
+            </apex:outputPanel>
+            
+            <apex:pageBlockSection columns="1" id="prjName" >
+             
+             <apex:pageBlockSectionItem rendered="{!objUserExcep.SFAccessManger__Are_you_Already_Approved__c=false}">               
+                <apex:outputLabel value="Project Name" />
+                
+               <!-- <apex:inputText value="{!objUserExcep.SFAccessManger__Project_Name__c}" id="name" required="true" /> -->
+                <apex:inputField value="{!objUserExcep.SFAccessManger__Project_Name__c}" required="true" />
+             </apex:pageBlockSectionItem> 
+             </apex:pageBlockSection>
+             <apex:pageBlockSection columns="1" id="reasonAccess" >
+             <apex:pageBlockSectionItem rendered="{!objUserExcep.SFAccessManger__Are_you_Already_Approved__c=false}" >   
+                 <apex:outputLabel value="Reason for requesting Access:" />            
+                     <apex:inputField value="{!objUserExcep.SFAccessManger__Reason_for_Requesting_Access__c}" required="true"  style="width:300px;height:85px" /> 
+             </apex:pageBlockSectionItem> 
+           
+            </apex:pageBlockSection>          
+            <apex:outputPanel id="appUser" >                         
+                <apex:pageBlockSection rendered="{!objUserExcep.SFAccessManger__Are_you_Already_Approved__c=true}">
+                        <!--<apex:outputLabel value="Access From"/>-->
+                        <apex:inputField value="{!objUserExcep.SFAccessManger__From_Date__c}" required="true" /> 
+                </apex:pageBlockSection>   
+                <apex:pageBlockSection rendered="{!objUserExcep.SFAccessManger__Are_you_Already_Approved__c=true}">
+                       <!-- <apex:outputLabel value="Access To"/>-->
+                        <apex:inputField value="{!objUserExcep.SFAccessManger__To_Date__c}" required="true"/>         
+                </apex:pageBlockSection> 
+            </apex:outputPanel> 
+           
+        
+     </apex:pageBlock>              
+</apex:form>
+</apex:page>

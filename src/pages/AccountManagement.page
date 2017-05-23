@@ -1,0 +1,57 @@
+<apex:page controller="AccountManagementController">
+    <apex:form >
+        <apex:pageBlock title="Account Details">
+            <apex:pageblockSection columns="1">
+                <apex:pageBlockTable value="{!accWrapper}" var="acc">
+                      <apex:column headerValue="Account Name">
+                           <apex:outputText value="{!acc.account.Name}"></apex:outputText>  
+                      </apex:column>
+                      <apex:column headerValue="Account Number">
+                           <apex:outputText value="{!acc.account.AccountNumber}"></apex:outputText>  
+                      </apex:column>
+                      <apex:column headerValue="ID Number">
+                          <apex:outputText value="{!acc.account.Id}"></apex:outputText>  
+                      </apex:column>
+                      <apex:column headerValue="Contact Count">
+                          <apex:commandLink value="{!acc.contactCount}" action="{!contactDisplay}">
+                              <apex:param name="contactDisp" value="{!acc.account.Id}"/>
+                           </apex:commandLink>
+                      </apex:column>
+                      <apex:column headerValue="Opportunity Count">
+                          <apex:commandLink value="{!acc.oppCount}" action="{!opportunityDisplay}">
+                              <apex:param name="oppDisp" value="{!acc.account.Id}"/>
+                           </apex:commandLink>
+                           
+                      </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+    <apex:pageBlock title="Opportunities" rendered="{!showOpp}">
+        <apex:pageblockSection columns="1">
+            <apex:pageblockTable value="{!oppList}" var="opp">
+                <apex:column headerValue="Opportunity Name">
+                   <apex:outputText value="{!opp.Name}"></apex:outputText>  
+                </apex:column>
+                <apex:column headerValue="Amount">
+                   <apex:outputText value="{!opp.Amount}"></apex:outputText>  
+                </apex:column>
+            </apex:pageblockTable>
+        </apex:pageblockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="Contacts Information" rendered="{!showContact}">
+        <apex:pageblockSection columns="1">
+            <apex:pageblockTable value="{!contactList}" var="con">
+                <apex:column headerValue="First Name">
+                   <apex:outputText value="{!con.FirstName}"></apex:outputText>  
+                </apex:column>
+                <apex:column headerValue="Last Name">
+                   <apex:outputText value="{!con.LastName}"></apex:outputText>  
+                </apex:column>
+            </apex:pageblockTable>
+        </apex:pageblockSection>
+    </apex:pageBlock>
+    
+</apex:page>
